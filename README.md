@@ -11,8 +11,9 @@ A production-grade **offline-first e-commerce reference application** built with
 
 ## 🎥 Demo Video
 
-- **Video Walkthrough (Google Drive / Loom):** [Link to Demo Video](https://drive.google.com/) *(Paste your video link here)*
-- **Flow Demonstrated:** Online catalog load $\rightarrow$ Airplane Mode toggle $\rightarrow$ Offline cache verification with pull-to-refresh $\rightarrow$ Offline detail view navigation.
+- **Video Walkthrough (Google Drive):** [Watch Demo Video on Google Drive](https://drive.google.com/file/d/1k5ZU7WX5Ee6kPLr2MGsvVtTSlUQFlVow/view?usp=sharing)
+- **In-Repository Video File:** [`docs/demo.mp4`](docs/demo.mp4)
+- **Flow Demonstrated:** Online catalog load → Airplane Mode toggle → Offline cache verification with pull-to-refresh → Offline detail view navigation.
 
 ---
 
