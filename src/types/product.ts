@@ -1,17 +1,37 @@
-export interface Product {
+export interface FeedItem {
     id: number;
     title: string;
-    price: number;
-    description: string;
     category: string;
-    image: string;
-    rating: {
+    description: string;
+    date?: string;
+    readTime?: string;
+    icon?: string;
+    author?: string;
+    price?: number;
+    image?: string;
+    rating?: {
         rate: number;
         count: number;
     };
 }
 
+// Universal Feed Item type
+export type Product = FeedItem;
+
+export type BottomTabParamList = {
+    HomeTab: undefined;
+    ExploreTab: undefined;
+    NotificationsTab: undefined;
+    ProfileTab: undefined;
+};
+
 export type RootStackParamList = {
+    Onboarding: undefined;
+    Login: undefined;
+    SignUp: undefined;
+    MainTabs: undefined;
     Home: undefined;
-    Detail: { product: Product };
+    Detail: { product: FeedItem };
+    PrivacyPolicy: undefined;
+    TermsOfService: undefined;
 };

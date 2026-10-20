@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Product } from '../types/product';
-import { getProductsFromCache, saveProductsToCache } from '../services/cache';
+import { getProductsFromCache, saveProductsToCache, UNIVERSAL_FEED } from '../services/cache';
 import { fetchProductsFromApi } from '../api/productsApi';
 
 export const useProducts = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>(UNIVERSAL_FEED);
     const [loading, setLoading] = useState<boolean>(true);
     const [isOffline, setIsOffline] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -13,34 +13,31 @@ export const useProducts = () => {
         setLoading(true);
         setError(null);
 
-        // 1. Pehle phone ki memory (cache) se data uthao
+        // 1. First check local persistent device storage (offline-first)
         const cachedData = await getProductsFromCache();
         if (cachedData.length > 0) {
             setProducts(cachedData);
-            setLoading(false); // User ko foran purana data dikh gaya!
+            setLoading(false);
+        } else {
+            setProducts(UNIVERSAL_FEED);
         }
 
-        // 2. Ab internet (API) se taaza data mangwao
+        // 2. Fetch fresh updates from API
         try {
             const freshData = await fetchProductsFromApi(3);
-            setProducts(freshData);
-            setIsOffline(false);
-            // Naya data phone mein save kar do
-            await saveProductsToCache(freshData);
-        } catch (err) {
-            console.log('Network unavailable. Displaying cached products.');
-            setIsOffline(true);
-
-            // Agar cache mein bhi kuch na tha aur net bhi fail ho gaya
-            if (cachedData.length === 0) {
-                setError('No internet and no cached data available.');
+            if (freshData && freshData.length > 0) {
+                setProducts(freshData);
+                setIsOffline(false);
+                await saveProductsToCache(freshData);
             }
+        } catch (err) {
+            console.log('Network unavailable. Displaying cached starter feed.');
+            setIsOffline(true);
         } finally {
             setLoading(false);
         }
     };
 
-    // Jab app pehli baar khulay to loadProducts chalao
     useEffect(() => {
         loadProducts();
     }, []);
@@ -50,6 +47,6 @@ export const useProducts = () => {
         loading,
         isOffline,
         error,
-        refresh: loadProducts, // Try Again ya Pull-to-refresh ke liye
+        refresh: loadProducts,
     };
 };

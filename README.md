@@ -1,30 +1,56 @@
-# KY TrendZone — Offline-First Mobile Reference App
+# Universal Mobile Starter Template
 
 [![CI Pipeline](https://github.com/KhadijaYaseen/offline-reference-app/actions/workflows/ci.yml/badge.svg)](https://github.com/KhadijaYaseen/offline-reference-app/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Expo SDK](https://img.shields.io/badge/Expo-SDK%2057-000020.svg)](https://expo.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6.svg)](https://www.typescriptlang.org/)
 
-A production-grade **offline-first e-commerce reference application** built with React Native, Expo, and TypeScript. Designed as a mobile companion to the **KY TrendZone Boutique**, it demonstrates best practices for resilient mobile architecture: persistent client-side caching (`AsyncStorage`), graceful degradation under network outage, exponential backoff retries, and comprehensive state handling (Loading, Empty, Error, and Offline).
+A production-grade **Universal Mobile Starter Boilerplate** built with **React Native, Expo SDK 57, and TypeScript**. Designed as a modular foundational reference architecture for any mobile application (Social, SaaS, FinTech, Delivery, or E-Commerce), eliminating repetitive boilerplate setup and accelerating new project kickoffs.
+
+---
+
+## 📱 Key Features & Modules
+
+### 1. Onboarding Walkthrough
+- 3-step introductory carousel highlighting core capabilities.
+- Dynamic active-dot pagination indicators.
+- One-tap "Skip" and "Get Started" navigation routes.
+
+### 2. Modern Auth Flow (Boilerplate)
+- **Login Screen**: Clean email/password inputs, password show/hide eye toggle, "Forgot Password?" dialog, Google/Apple social sign-in placeholders, and a "Continue as Guest / Skip" bypass.
+- **Sign Up Screen**: Full name, email, dual password confirmation check, and interactive checkbox linked directly to legal agreements.
+
+### 3. Universal 4 Bottom Tabs Navigation
+- 🏠 **Home / Feed**: Content feed powered by an **Offline-First Caching Engine** (`AsyncStorage`) and pull-to-refresh capabilities.
+- 🔍 **Explore / Discover**: Real-time universal search with category filter chips (`Technology`, `Design`, `Finance`, `Lifestyle`) and empty state handling.
+- 🔔 **Activity & Alerts**: Notification center with unread count badges, "Mark all read" action, and relative timestamps.
+- 👤 **Profile & Settings**: User session card, Dark Mode and Offline toggle switches, version info, Terms & Privacy links, and a confirmation logout flow.
+
+### 4. Resilient Offline-First Architecture
+- **Persistent Local Cache**: Powered by `@react-native-async-storage/async-storage` for instantaneous startup without network lag.
+- **Exponential Backoff Retry Engine**: Gracefully handles intermittent network drops by attempting retries at spaced intervals before throwing.
+- **NetInfo State Banner**: Displays an amber notification badge when device connectivity drops while keeping all cached content readable.
+
+### 5. Mandatory Legal & Utility Screens
+- **Resource Detail View**: Detailed content reader with offline guarantee cards and native share sheet integration.
+- **Privacy Policy Screen**: Standard data protection and local storage disclosure.
+- **Terms of Service Screen**: Foundational boilerplate terms and usage rights agreement.
 
 ---
 
 ## 🎥 Demo Video
 
-- **Video Walkthrough (Google Drive):** [Watch Demo Video on Google Drive](https://drive.google.com/file/d/1k5ZU7WX5Ee6kPLr2MGsvVtTSlUQFlVow/view?usp=sharing)
+- **Video Walkthrough (Google Drive):** [Watch Demo Walkthrough](https://drive.google.com/file/d/1k5ZU7WX5Ee6kPLr2MGsvVtTSlUQFlVow/view?usp=sharing)
 - **In-Repository Video File:** [`docs/demo.mp4`](docs/demo.mp4)
-- **Flow Demonstrated:** Online catalog load → Airplane Mode toggle → Offline cache verification with pull-to-refresh → Offline detail view navigation.
 
 ---
 
-## 🚀 Quick Start (Under 10 Minutes)
-
-Follow these steps to clone, install, and run the application locally on any Android or iOS device via Expo Go.
+## 🚀 Quick Start (Under 5 Minutes)
 
 ### Prerequisites
-- **Node.js**: v20 or higher (LTS recommended)
+- **Node.js**: v20 or higher
 - **npm** or **yarn**
-- **Expo Go App** (Android / iOS)
+- **Expo Go App** (Android / iOS) or Android Studio Emulator
 
 ### Installation & Launch
 ```bash
@@ -32,120 +58,69 @@ Follow these steps to clone, install, and run the application locally on any And
 git clone https://github.com/KhadijaYaseen/offline-reference-app.git
 cd offline-reference-app
 
-# 2. Install dependencies
-npm install
+# 2. Install dependencies (with legacy peer deps flag for React 19 compatibility)
+npm install --legacy-peer-deps
 
-# 3. Start the Expo development server
-npx expo start
+# 3. Start development server
+npm start
 ```
 
-### Running on your device:
-- **Physical Phone**: Scan the terminal QR code using the **Expo Go** app.
-- **Web Browser**: Press `w` in the terminal for a live web preview.
-- **Android Emulator**: Press `a` in the terminal.
+### Running on Device / Emulator:
+- **Android Emulator**: Press `a` in the terminal (or run `npm run android`).
+- **Physical Phone**: Scan the QR code using the **Expo Go** app.
+- **Web Preview**: Press `w` in the terminal.
 
 ---
 
-## 🏛️ Architecture Overview
+## 📂 Project Structure
 
-The codebase is organized with clear separation of concerns:
-
-```
-offline-reference-app/
-├── .github/
-│   └── workflows/
-│       └── ci.yml               # Automated CI: TypeScript check & Jest unit tests
-├── __tests__/                   # Automated Unit Tests
-│   ├── cache.test.ts            # Tests for AsyncStorage write, read, and empty fallback
-│   └── productsApi.test.ts      # Tests for API fetch, retry loop & backoff resilience
-├── src/
-│   ├── api/
-│   │   └── productsApi.ts       # Public FakeStore API client with 3-attempt exponential retry
-│   ├── services/
-│   │   └── cache.ts             # AsyncStorage service for local persistence
-│   ├── hooks/
-│   │   └── useProducts.ts       # State orchestrator managing cache fallback & network sync
-│   ├── types/
-│   │   └── product.ts           # TypeScript interfaces (Product, RootStackParamList)
-│   ├── components/
-│   │   ├── OfflineBanner.tsx    # Amber indicator for offline mode
-│   │   └── ProductCard.tsx      # Clean e-commerce product card
-│   └── screens/
-│       ├── HomeScreen.tsx       # Searchable catalog, pull-to-refresh & retry view
-│       └── DetailScreen.tsx     # Full product details, image, price & Add-to-Cart
-├── App.tsx                      # Root component with SafeAreaProvider & NativeStack navigation
-├── app.json                     # Expo configuration with custom KY TrendZone branding
-├── package.json                 # Scripts: start, lint, test
-└── README.md                    # Project documentation
+```text
+├── App.tsx                      # Root navigation setup (NativeStack + BottomTabs)
+├── app.json                     # Expo configuration and universal icon branding
+├── assets/                      # Universal minimalist app icon and splash assets
+├── __tests__/                   # Automated Jest test suites
+│   ├── cache.test.ts            # AsyncStorage persistence unit tests
+│   └── productsApi.test.ts      # Exponential backoff retry unit tests
+└── src/
+    ├── api/                     # Network services and retry logic
+    │   └── productsApi.ts
+    ├── components/              # Modular UI components
+    │   ├── FeedCard.tsx         # Universal feed card item
+    │   └── OfflineBanner.tsx    # Amber network drop warning banner
+    ├── hooks/                   # Custom business logic hooks
+    │   └── useProducts.ts       # Offline-first state manager
+    ├── screens/                 # Application screens
+    │   ├── OnboardingScreen.tsx # 3-step introductory carousel
+    │   ├── LoginScreen.tsx      # Clean modern authentication
+    │   ├── SignUpScreen.tsx     # Registration & terms agreement
+    │   ├── HomeScreen.tsx       # Resilient feed with pull-to-refresh
+    │   ├── ExploreScreen.tsx    # Category filter chips & search
+    │   ├── NotificationsScreen.tsx # Activity alerts & unread badges
+    │   ├── ProfileScreen.tsx    # Preferences, toggles & session
+    │   ├── DetailScreen.tsx     # Resource detail overview
+    │   ├── PrivacyPolicyScreen.tsx # Legal privacy policy
+    │   └── TermsOfServiceScreen.tsx # Legal terms of service
+    ├── services/                # Local database & caching
+    │   └── cache.ts             # AsyncStorage client-side store
+    └── types/                   # TypeScript schemas & navigation params
+        └── product.ts
 ```
 
 ---
 
-## 📡 Offline Caching & Resiliency Behavior
+## 🧪 Automated Testing & CI
 
-```mermaid
-flowchart TD
-    A["App Launches / Screen Opens"] --> B["Read Cached Products from AsyncStorage"]
-    B --> C{"Is Cache Available?"}
-    C -- Yes --> D["Instantly render cached products to user"]
-    C -- No --> E["Display Loading Indicator"]
-    D --> F["Trigger Background API Fetch with Retries"]
-    E --> F
-    F --> G{"API Call Successful?"}
-    G -- Yes --> H["Update screen with fresh products<br/>Save latest data to AsyncStorage"]
-    G -- No (Offline) --> I{"Do we have cached products?"}
-    I -- Yes --> J["Keep showing cached products<br/>Display Amber 'Offline Mode' Banner"]
-    I -- No --> K["Display Error State Card with 'Try Again' button"]
-```
-
-### 1. Storage Engine
-Cached catalog items are serialized as JSON and stored in persistent device storage via `@react-native-async-storage/async-storage` using the key `@trendzone_products`.
-
-### 2. Exponential Backoff Retry Strategy
-Network requests do not immediately fail on transient network hiccups. Instead, requests retry up to 3 times with exponential backoff:
-$$\text{delay} = \text{attempt} \times 1000\text{ ms}$$
-- **Attempt 1:** Immediate request
-- **Attempt 2:** Wait 1,000ms before retrying
-- **Attempt 3:** Wait 2,000ms before final fallback
-
----
-
-## 🧪 Automated Testing
-
-Comprehensive unit tests verify both the offline cache service and the network retry resilience.
+This repository maintains strict TypeScript typechecking and automated unit tests running on every pull request via GitHub Actions.
 
 ```bash
-# Run all automated tests
-npm test
-
-# Run TypeScript type check
+# Run TypeScript compilation check
 npm run lint
+
+# Run Jest unit test suite
+npm test
 ```
 
-### Test Coverage:
-- **`__tests__/cache.test.ts`**:
-  - ✅ Verifies saving and retrieving serialized product lists to/from AsyncStorage.
-  - ✅ Verifies safe fallback to empty array `[]` when cache is empty.
-- **`__tests__/productsApi.test.ts`**:
-  - ✅ Verifies first-try success resolution.
-  - ✅ Verifies automatic retry recovery on network drop.
-
 ---
 
-## 🔒 Security Note: Never Commit Secrets
-
-> [!CAUTION]
-> **Never commit secrets, API keys, passwords, or personal access tokens into version control.**
-> This repository uses `.gitignore` to prevent committing sensitive local files (`.env`, `.env.local`, credentials, keystores, and IDE configs). In production, inject secrets via environment variables or CI/CD secrets.
-
----
-
-## 📢 Public Mock Data Disclaimer
-
-This project uses public mock data provided by the free, open-access **[FakeStore API](https://fakestoreapi.com/products)**. No proprietary, customer, or confidential data is used or stored.
-
----
-
-## 📜 License
-
-This project is licensed under the **[MIT License](LICENSE)** - Copyright © 2026 Khadija Yaseen.
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

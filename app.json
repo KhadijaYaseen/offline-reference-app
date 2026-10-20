@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "KY TrendZone",
-    "slug": "ky-trendzone",
+    "name": "Mobile Starter App",
+    "slug": "mobile-starter-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

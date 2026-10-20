@@ -15,7 +15,7 @@ import { useProducts } from '../hooks/useProducts';
 import { ProductCard } from '../components/ProductCard';
 import { OfflineBanner } from '../components/OfflineBanner';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = NativeStackScreenProps<RootStackParamList>;
 
 export const HomeScreen: React.FC<Props> = ({ navigation }) => {
     const { products, loading, isOffline, error, refresh } = useProducts();
@@ -33,7 +33,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
             <View style={styles.searchBar}>
                 <TextInput
                     style={styles.searchInput}
-                    placeholder="Search products in TrendZone..."
+                    placeholder="Search items..."
                     placeholderTextColor="#94A3B8"
                     value={search}
                     onChangeText={setSearch}
@@ -44,7 +44,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
             {loading && products.length === 0 ? (
                 <View style={styles.center}>
                     <ActivityIndicator size="large" color="#0F172A" />
-                    <Text style={styles.loadingText}>Loading TrendZone catalog...</Text>
+                    <Text style={styles.loadingText}>Loading feed...</Text>
                 </View>
             ) : error && products.length === 0 ? (
                 /* Error & Retry State */
