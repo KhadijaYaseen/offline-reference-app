@@ -5,93 +5,97 @@
 [![Expo SDK](https://img.shields.io/badge/Expo-SDK%2057-000020.svg)](https://expo.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6.svg)](https://www.typescriptlang.org/)
 
-A production-grade **Universal Mobile Starter Boilerplate** built with **React Native, Expo SDK 57, and TypeScript**. Designed as a modular foundational reference architecture for any mobile application (Social, SaaS, FinTech, Delivery, or E-Commerce), eliminating repetitive boilerplate setup and accelerating new project kickoffs.
+A production-grade, offline-first **Universal Mobile Starter Boilerplate** built with **React Native, Expo SDK 57, and TypeScript**. Designed as a modular foundational architecture for any mobile application, eliminating repetitive setup and accelerating delivery.
 
 ---
 
-## 📱 Key Features & Modules
+## 🎥 **Walkthrough & Live Demo**
 
-### 1. Onboarding Walkthrough
-- 3-step introductory carousel highlighting core capabilities.
-- Dynamic active-dot pagination indicators.
-- One-tap "Skip" and "Get Started" navigation routes.
+> **Note:** Drag and drop your `demo.mp4` directly into this section on GitHub to display the video player inline.
 
-### 2. Modern Auth Flow (Boilerplate)
-- **Login Screen**: Clean email/password inputs, password show/hide eye toggle, "Forgot Password?" dialog, Google/Apple social sign-in placeholders, and a "Continue as Guest / Skip" bypass.
-- **Sign Up Screen**: Full name, email, dual password confirmation check, and interactive checkbox linked directly to legal agreements.
+https://github.com/user-attachments/assets/demo.mp4
 
-### 3. Universal 4 Bottom Tabs Navigation
-- 🏠 **Home / Feed**: Content feed powered by an **Offline-First Caching Engine** (`AsyncStorage`) and pull-to-refresh capabilities.
-- 🔍 **Explore / Discover**: Real-time universal search with category filter chips (`Technology`, `Design`, `Finance`, `Lifestyle`) and empty state handling.
-- 🔔 **Activity & Alerts**: Notification center with unread count badges, "Mark all read" action, and relative timestamps.
-- 👤 **Profile & Settings**: User session card, Dark Mode and Offline toggle switches, version info, Terms & Privacy links, and a confirmation logout flow.
-
-### 4. Resilient Offline-First Architecture
-- **Persistent Local Cache**: Powered by `@react-native-async-storage/async-storage` for instantaneous startup without network lag.
-- **Exponential Backoff Retry Engine**: Gracefully handles intermittent network drops by attempting retries at spaced intervals before throwing.
-- **NetInfo State Banner**: Displays an amber notification badge when device connectivity drops while keeping all cached content readable.
-
-### 5. Mandatory Legal & Utility Screens
-- **Resource Detail View**: Detailed content reader with offline guarantee cards and native share sheet integration.
-- **Privacy Policy Screen**: Standard data protection and local storage disclosure.
-- **Terms of Service Screen**: Foundational boilerplate terms and usage rights agreement.
+* **Offline Flow Demonstrated:** Full online catalog load → Network disconnect (Airplane Mode) → Resilient local cache retrieval with pull-to-refresh → Detail screen navigation.
 
 ---
 
-## 🎥 Demo Video
+## 📱 **Core Features & Modules**
 
-- **Video Walkthrough (Google Drive):** [Watch Demo Walkthrough](https://drive.google.com/file/d/1k5ZU7WX5Ee6kPLr2MGsvVtTSlUQFlVow/view?usp=sharing)
-- **In-Repository Video File:** [`docs/demo.mp4`](docs/demo.mp4)
+### **1. Onboarding Walkthrough**
+* **3-Step Carousel:** Smooth swipeable slides highlighting app capabilities.
+* **Pagination Indicator:** Dynamic active-dot visual feedback.
+* **Navigation Flow:** One-tap "Skip" and "Get Started" buttons routing directly to authentication.
+
+### **2. Production Auth Flow**
+* **Login Screen:** Clean email/password inputs, password visibility toggle, "Forgot Password?" prompt, social authentication buttons, and "Continue as Guest / Skip" bypass.
+* **Sign Up Screen:** Full name, email, password match validation, and interactive agreements checkbox.
+
+### **3. Universal 4 Bottom Tabs**
+* 🏠 **Home / Feed:** Content feed powered by an **Offline-First Caching Engine** (`AsyncStorage`) with pull-to-refresh.
+* 🔍 **Explore / Discover:** Real-time search bar with horizontal category filter chips (`Technology`, `Design`, `Finance`, `Lifestyle`) and empty-state handling.
+* 🔔 **Alerts & Notifications:** Activity center with unread count badges, relative timestamps, and "Mark all read" action.
+* 👤 **Profile & Settings:** User session card, Dark Mode and Offline toggle switches, version info, Terms & Privacy links, and confirmation logout dialog.
+
+### **4. Resilient Offline-First Architecture**
+* **Persistent Local Cache:** Instant app startup using `@react-native-async-storage/async-storage` without network delays.
+* **Exponential Backoff Retry Engine:** Graceful automatic retry logic for intermittent connection drops and packet loss.
+* **NetInfo State Banner:** Amber notification banner that appears automatically when device connectivity drops.
+
+### **5. Mandatory Legal & Utility Screens**
+* **Resource Detail Screen:** Comprehensive overview with offline availability guarantee card and native share sheet.
+* **Privacy Policy Screen:** Standard data protection disclosures.
+* **Terms of Service Screen:** Boilerplate usage rights and licensing agreements.
 
 ---
 
-## 🚀 Quick Start (Under 5 Minutes)
+## 🚀 **Quick Start Guide**
 
-### Prerequisites
-- **Node.js**: v20 or higher
-- **npm** or **yarn**
-- **Expo Go App** (Android / iOS) or Android Studio Emulator
+### **Prerequisites**
+* **Node.js**: v20 or higher
+* **npm** or **yarn**
+* **Expo Go App** (Android / iOS) or Android Studio Emulator
 
-### Installation & Launch
+### **Installation & Launch**
+
 ```bash
 # 1. Clone the repository
 git clone https://github.com/KhadijaYaseen/offline-reference-app.git
 cd offline-reference-app
 
-# 2. Install dependencies (with legacy peer deps flag for React 19 compatibility)
+# 2. Install dependencies (with legacy-peer-deps for React 19)
 npm install --legacy-peer-deps
 
 # 3. Start development server
 npm start
 ```
 
-### Running on Device / Emulator:
-- **Android Emulator**: Press `a` in the terminal (or run `npm run android`).
-- **Physical Phone**: Scan the QR code using the **Expo Go** app.
-- **Web Preview**: Press `w` in the terminal.
+### **Running the App**
+* **Android Emulator:** Press `a` in the terminal (or run `npm run android`).
+* **Physical Phone:** Scan the QR code using the **Expo Go** app.
+* **Web Preview:** Press `w` in the terminal.
 
 ---
 
-## 📂 Project Structure
+## 📂 **Project Directory Structure**
 
 ```text
 ├── App.tsx                      # Root navigation setup (NativeStack + BottomTabs)
 ├── app.json                     # Expo configuration and universal icon branding
-├── assets/                      # Universal minimalist app icon and splash assets
+├── assets/                      # Minimalist geometric app icon and splash assets
 ├── __tests__/                   # Automated Jest test suites
 │   ├── cache.test.ts            # AsyncStorage persistence unit tests
 │   └── productsApi.test.ts      # Exponential backoff retry unit tests
 └── src/
-    ├── api/                     # Network services and retry logic
+    ├── api/                     # Network services & retry logic
     │   └── productsApi.ts
     ├── components/              # Modular UI components
-    │   ├── FeedCard.tsx         # Universal feed card item
+    │   ├── ProductCard.tsx      # Universal feed card item
     │   └── OfflineBanner.tsx    # Amber network drop warning banner
     ├── hooks/                   # Custom business logic hooks
     │   └── useProducts.ts       # Offline-first state manager
     ├── screens/                 # Application screens
     │   ├── OnboardingScreen.tsx # 3-step introductory carousel
-    │   ├── LoginScreen.tsx      # Clean modern authentication
+    │   ├── LoginScreen.tsx      # Modern authentication screen
     │   ├── SignUpScreen.tsx     # Registration & terms agreement
     │   ├── HomeScreen.tsx       # Resilient feed with pull-to-refresh
     │   ├── ExploreScreen.tsx    # Category filter chips & search
@@ -108,9 +112,9 @@ npm start
 
 ---
 
-## 🧪 Automated Testing & CI
+## 🧪 **Automated Testing & Quality**
 
-This repository maintains strict TypeScript typechecking and automated unit tests running on every pull request via GitHub Actions.
+This repository maintains strict TypeScript typechecking and automated unit tests running on every pull request via GitHub Actions CI.
 
 ```bash
 # Run TypeScript compilation check
@@ -122,5 +126,6 @@ npm test
 
 ---
 
-## 📄 License
+## 📄 **License**
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
