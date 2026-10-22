@@ -11,9 +11,11 @@ A production-grade, offline-first **Universal Mobile Starter Boilerplate** built
 
 ## 🎥 **Walkthrough & Live Demo**
 
-> **Note:** Drag and drop your `demo.mp4` directly into this section on GitHub to display the video player inline.
 
-https://github.com/user-attachments/assets/demo.mp4
+
+https://github.com/user-attachments/assets/5073df30-041b-4abc-b6d3-612f3e8e28a1
+
+
 
 * **Offline Flow Demonstrated:** Full online catalog load → Network disconnect (Airplane Mode) → Resilient local cache retrieval with pull-to-refresh → Detail screen navigation.
 
