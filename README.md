@@ -19,6 +19,8 @@ A production-grade, offline-first **Universal Mobile Starter Boilerplate** built
 
 
 
+
+
 * **Offline Flow Demonstrated:** Full online catalog load → Network disconnect (Airplane Mode) → Resilient local cache retrieval with pull-to-refresh → Detail screen navigation.
 
 ---
