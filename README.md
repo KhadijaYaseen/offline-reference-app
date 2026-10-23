@@ -1,6 +1,6 @@
 # Universal Mobile Starter Template
 
-[![CI Pipeline](https://github.com/KhadijaYaseen/offline-reference-app/actions/workflows/ci.yml/badge.svg)](https://github.com/KhadijaYaseen/offline-reference-app/actions)
+[![CI Pipeline](https://github.com/khawajaalabs/Mobile-Starter-Template/actions/workflows/ci.yml/badge.svg)](https://github.com/khawajaalabs/Mobile-Starter-Template/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Expo SDK](https://img.shields.io/badge/Expo-SDK%2057-000020.svg)](https://expo.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6.svg)](https://www.typescriptlang.org/)
@@ -13,6 +13,7 @@ A production-grade, offline-first **Universal Mobile Starter Boilerplate** built
 
 https://github.com/user-attachments/assets/5073df30-041b-4abc-b6d3-612f3e8e28a1
 
+* **In-Repository Video Walkthrough:** [`docs/demo.mp4`](docs/demo.mp4)
 * **Offline Flow Demonstrated:** Full online catalog load → Network disconnect (Airplane Mode) → Resilient local cache retrieval with pull-to-refresh → Detail screen navigation.
 
 ---
@@ -57,8 +58,8 @@ https://github.com/user-attachments/assets/5073df30-041b-4abc-b6d3-612f3e8e28a1
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/KhadijaYaseen/offline-reference-app.git
-cd offline-reference-app
+git clone https://github.com/khawajaalabs/Mobile-Starter-Template.git
+cd Mobile-Starter-Template
 
 # 2. Install dependencies (with legacy-peer-deps for React 19)
 npm install --legacy-peer-deps
